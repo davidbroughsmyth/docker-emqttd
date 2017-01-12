@@ -133,10 +133,15 @@ RUN apk --no-cache add \
         perl \
     && rm -rf /var/cache/apk/*
 
+
+
 WORKDIR /opt/emqttd
+
+COPY emq_auth_redis.conf /opt/emqttd/etc/plugins/emq_auth_redis.conf 
 
 # start emqttd and initial environments
 CMD ["/opt/emqttd/start.sh"]
+
 
 VOLUME ["/opt/emqttd/log", "/opt/emqttd/data", "/opt/emqttd/plugins", "/opt/emqttd/etc"]
 
